@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>On-Chain Committee (BC) - Truffle + Ganache</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <img src="logo.svg" alt="Committee logo: members around a shared pot" width="64" height="64">
+    <div>
+      <h1>On-Chain Committee (BC)</h1>
+      <p class="tag">Assignment 3: deployed with Truffle on a local Ganache blockchain.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section>
+    <h2>Wallet</h2>
+    <button id="connectBtn">Connect MetaMask</button>
+    <ul class="facts">
+      <li><b>Account:</b> <span id="acct">not connected</span></li>
+      <li><b>Network:</b> <span id="net">-</span></li>
+      <li><b>Balance:</b> <span id="bal">-</span></li>
+      <li><b>Committee contract:</b> <span id="addrC">-</span></li>
+      <li><b>Reviews contract:</b> <span id="addrR">-</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>This round</h2>
+    <p>Pot paid to the next recipient</p>
+    <div class="pot" id="pot">- ETH</div>
+    <ul class="facts">
+      <li><b>Contribution per member:</b> <span id="contrib">-</span></li>
+      <li><b>Members joined:</b> <span id="count">-</span></li>
+      <li><b>Round:</b> <span id="round">-</span></li>
+      <li><b>Paid this round:</b> <span id="paid">-</span></li>
+      <li><b>Next recipient:</b> <span id="recipient">-</span></li>
+    </ul>
+    <h2 style="margin-top:16px">Payout order</h2>
+    <ol id="members"><li>Connect your wallet to see members.</li></ol>
+    <button id="joinBtn" disabled>Join committee</button>
+    <button id="payBtn" disabled>Pay contribution</button>
+    <button id="refreshBtn" class="alt" disabled>Refresh</button>
+  </section>
+
+  <section>
+    <h2>Rate a member</h2>
+    <p id="rateNote">Connect your wallet first. Ratings open when the committee has finished.</p>
+    <div class="form">
+      <select id="rateTarget" aria-label="Member to rate" disabled></select>
+      <select id="rateStars" aria-label="Stars" disabled>
+        <option value="5">5 stars</option>
+        <option value="4">4 stars</option>
+        <option value="3">3 stars</option>
+        <option value="2">2 stars</option>
+        <option value="1">1 star</option>
+      </select>
+      <input id="rateComment" type="text" maxlength="120" placeholder="Short comment, for example: always paid on time" aria-label="Comment" disabled>
+      <button id="rateBtn" disabled>Submit rating</button>
+    </div>
+    <h2 style="margin-top:16px">Member ratings</h2>
+    <ul id="repList"><li>No ratings yet.</li></ul>
+  </section>
+
+  <section>
+    <h2>Transactions</h2>
+    <p id="status">Connect MetaMask to begin.</p>
+    <ul id="txLog"></ul>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <ol>
+      <li>Members click <b>Join committee</b> until all seats are filled.</li>
+      <li>Each round, every member clicks <b>Pay contribution</b>.</li>
+      <li>When the last member pays, the contract sends the full pot to that round's recipient.</li>
+      <li>After the last round, members can leave a 1 to 5 star rating for each other (second contract).</li>
+    </ol>
+  </section>
+</main>
+
+<footer>MG3012 Blockchain Technology for Business, Assignment 3</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
